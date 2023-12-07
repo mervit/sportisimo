@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <title>Sign in | Sportisimo</title>
+</head>
+
+<body>
+
+    <div class="row">
+        <div id="login" class="col s12 m8 l4 offset-m2 offset-l4">
+            <div class="card">
+                <div class="card-action blue darken-2 white-text">
+                    <h1>Přihlášení</h1>
+                </div>
+                <div class="card-content">
+                    <div n:foreach="$flashes as $flash" n:class="flash, $flash->type">{$flash->message}</div>
+                    <form n:name="signInForm">
+
+                        <div class="form-field">
+                            {label username /}
+                            {input username}
+                        </div><br>
+
+                        <div class="form-field">
+                            {label password /}
+                            {input password}
+                        </div><br>
+
+                        <div class="form-field">
+                            <button n:name="send" class="btn-large" style="width:100%;">Přihlásit se</button>
+                        </div><br>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+	{block scripts}
+    <script src="{$basePath}/assets/bundle.js"></script>
+{/block}
+</body>
+</html>

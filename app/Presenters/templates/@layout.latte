@@ -5,10 +5,39 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-	<title>{ifset title}{include title|stripHtml} | {/ifset}Nette Web</title>
+	<title>{ifset title}{include title|stripHtml} | {/ifset}Sportisimo</title>
 </head>
 
-<body>
+<body class="has-fixed-sidenav">
+
+	<header>
+		<div class="navbar-fixed">
+			<nav class="navbar blue darken-2 white-text">
+				<div class="nav-wrapper">
+					<a href="#!" class="brand-logo">SRP</a>
+					<ul class="right">
+						<li><a n:href="Sign:out"><strong>Ohlásit</strong>({$user->identity->getId()})</a></li>
+					</ul>
+					<a href="#!" data-target="sidenav-left" class="sidenav-trigger left"><i class="material-icons">menu</i></a>
+				</div>
+			</nav>
+		</div>
+
+		<ul id="sidenav-left" class="sidenav sidenav-fixed white-text">
+			<li>
+				<a href="#!" id="sidenav-toggler"><i class="material-icons">menu</i></a>
+			</li>
+			<li>
+				<a href="#!"><span>Nastenka</span><i class="material-icons">dashboard</i></a>
+			</li>
+			<li>
+				<a href="#!"><span>Značky</span><i class="material-icons">local_offer</i></a>
+			</li>
+		</ul>
+
+
+	</header>
+
 	<div n:foreach="$flashes as $flash" n:class="flash, $flash->type">{$flash->message}</div>
 
 	{include content}
