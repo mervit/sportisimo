@@ -1,0 +1,84 @@
+{block content}
+<div id="headline">
+    <a n:href="Home:default" class="left"><i class="material-icons">arrow_back</i></a>
+    <h1>Značky</h1>
+</div>
+<main>
+    <div class="buttons">
+        <a class="btn modal-trigger" href="#itemAddForm"><i class="material-icons left">add</i>Přidat značku</a>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    <span>Název</span>
+                    <a n:href="this, page: 1, onPage: $paginator->getitemsPerPage(), orderBy: 'name', orderDirection: 'DESC'"><i class="material-icons">arrow_upward</i></a>
+                    <a n:href="this, page: 1, onPage: $paginator->getitemsPerPage(), orderBy: 'name', orderDirection: 'ASC'"><i class="material-icons">arrow_downward</i></a>
+                </th>
+                <th class="right-align">Akce</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr n:foreach="$manufacturers as $manufacturer">
+                <td>{$manufacturer->name}</td>
+                <td class="right-align">
+                    <a n:href="delete!, $manufacturer->id">Smazat</a>
+                    <a href="#!" class="itemEdit" data-id="{$manufacturer->id}" data-name="{$manufacturer->name}">Editovat</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="right-align">
+        <ul class="pagination">
+            {if !$paginator->isFirst()}
+                <li><a n:href="this, page: $paginator->getPage() - 1, onPage: $paginator->getitemsPerPage(), orderBy: $orderBy, orderDirection: $orderDirection"><i class="material-icons">chevron_left</i></a></li>
+            {/if}
+            {if $paginator->getPage() - 6 > 0}<li>...</li>{/if}
+            {for $p = 1; $p <= $paginator->getPageCount(); $p++}
+                {continueIf $p > ($paginator->getPage() + 5) or $p < ($paginator->getPage() - 5)}
+                <li {if $paginator->getPage() == $p}class="active"{/if}><a n:href="this, page: $p, onPage: $paginator->getitemsPerPage(), orderBy: $orderBy, orderDirection: $orderDirection">{$p}</a></li>
+            {/for}
+            {if $paginator->getPage() + 5 < $paginator->getPageCount()}<li>...</li>{/if}
+            {if !$paginator->isLast()}
+                <li><a n:href="this, page: $paginator->getPage() + 1, onPage: $paginator->getitemsPerPage(), orderBy: $orderBy, orderDirection: $orderDirection"><i class="material-icons">chevron_right</i></a></li>
+            {/if}
+        </ul>
+        <ul class="pagination">
+            {foreach $availableOnPage as $p}
+                <li><a {if $paginator->getItemsPerPage() == $p}class="blue-text darken-1"{/if} n:href="this, page: 1, onPage: $p, orderBy: $orderBy, orderDirection: $orderDirection">{$p}</a></li>
+            {/foreach}
+        </ul>
+    </div>
+</main>
+
+<div id="itemAddForm" class="modal">
+    {form manufacturerAddForm}
+        <div class="modal-content">
+            <h4>Nová značka</h4>
+            <div class="input-field">
+                {label name /}
+                {input name}
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close btn-flat">Zavřít</a>
+            <input class="modal-close btn-flat" n:name="send" />
+        </div>
+    {/form}
+</div>
+<div id="itemEditForm" class="modal">
+    {form manufacturerEditForm}
+        <div class="modal-content">
+            <h4>Upravit značku</h4>
+            <div class="input-field">
+                {label name /}
+                {input name}
+            </div>
+            {input id}
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close btn-flat">Zavřít</a>
+            <input class="btn-flat" n:name="send" />
+        </div>
+    {/form}
+</div>

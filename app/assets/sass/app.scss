@@ -45,7 +45,14 @@ body {
   background-color: #f4f4f4;
 }
 
+.buttons {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
 @import "login";
 @import "navigation";
 @import "main";
 @import "flash";
+@import "headline";
+@import "table";

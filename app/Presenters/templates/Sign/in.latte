@@ -17,7 +17,7 @@
                     <h1>Přihlášení</h1>
                 </div>
                 <div class="card-content">
-                    <div n:foreach="$flashes as $flash" n:class="flash, $flash->type">{$flash->message}</div>
+                    <div n:foreach="$flashes as $flash" n:class="flash, $flash->type" style="margin-bottom: 20px;">{$flash->message}</div>
                     <form n:name="signInForm">
 
                         <div class="form-field">

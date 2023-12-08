@@ -3,3 +3,4 @@ node_modules
 vendor
 .idea
 www/assets
+www/adminer.php
